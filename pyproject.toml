@@ -1,0 +1,9 @@
+[project]
+name = "market-research-agent"
+version = "0.1.0"
+description = "Plataforma de pesquisa em trading (paper trading, horizonte diário)"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

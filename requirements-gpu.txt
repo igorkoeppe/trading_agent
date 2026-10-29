@@ -1,0 +1,11 @@
+# Fase 4 (Kronos). Instale o PyTorch com CUDA ANTES deste arquivo, pelo comando
+# que o site oficial do PyTorch indicar para Windows + pip + sua versão de CUDA, por exemplo:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu124
+# Depois:
+#   pip install -r requirements-gpu.txt
+#
+# Dependências listadas no requirements.txt oficial do Kronos (consultado em 28 out 2026).
+einops==0.8.1
+huggingface_hub==0.33.1
+safetensors==0.6.2
+tqdm==4.67.1

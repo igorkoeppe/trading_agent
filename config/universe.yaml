@@ -1,0 +1,23 @@
+# Universo provisório. A lista definitiva é fixada no pré-registro do primeiro experimento
+# (experiments/), depois de confirmar na Alpaca que cada ativo tem fractionable = true.
+symbols:
+  - SPY
+  - QQQ
+  - IWM
+  - DIA
+  - XLK
+  - XLF
+  - XLE
+  - XLV
+  - AAPL
+  - MSFT
+  - NVDA
+  - AMZN
+  - GOOGL
+  - META
+  - JPM
+  - XOM
+  - JNJ
+  - PG
+  - KO
+  - WMT

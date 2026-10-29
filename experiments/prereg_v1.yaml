@@ -1,0 +1,65 @@
+# PRÉ-REGISTRO v1 - CONGELADO em 2026-10-28 (aprovado pelo usuário)
+# Fonte da verdade dos gates. Depois de congelado (ver experiments/PREREGISTRO.md),
+# nenhum valor daqui muda. Mudar = criar prereg_v2 ANTES de olhar qualquer resultado novo.
+status: congelado
+aprovado_em: "2026-10-28"
+
+dados:
+  fonte: alpaca_sip_diario
+  ajuste: all              # splits e dividendos
+  universo: config/universe.yaml   # 20 ativos, congelado junto (hash em prereg_v1.sha256)
+  relatorio_separado: [SPY, QQQ, IWM, DIA, XLK, XLF, XLE, XLV]   # subconjunto ETFs, sem viés de sobrevivência; reportado ao lado, os gates valem para os 20
+  desenvolvimento: {inicio: "2016-01-01", fim: "2024-12-31"}
+  teste_final:     {inicio: "2025-01-01", fim: "2026-09-30"}   # não carregar antes do congelamento
+
+walk_forward:
+  treino_inicial_anos: 3      # primeira janela de teste começa em 2019-01
+  janela_teste_meses: 6
+  passo_meses: 6
+  expansivo: true
+
+execucao_simulada:
+  sinal: fechamento_do_pregao_t
+  entrada: abertura_do_pregao_t_mais_1
+  slippage_bps_por_lado: 5
+  slippage_bps_estresse: 10   # gate de robustez
+  comissao: 0
+  stop: {tipo: atr, multiplo: 2.0, periodo: 14}
+  stop_gap: preenche_na_abertura_se_abrir_abaixo
+  saida_por_tempo_sessoes: 10
+  risco_por_operacao: 0.01
+  max_posicoes: 3
+  short: false
+
+busca_de_parametros:
+  max_configuracoes_testadas: 12   # todas registradas; passar do limite invalida o gate G6
+  registrar_em: experiments/log_configuracoes.jsonl
+
+gates_config_A:   # estratégia de referência, fora da amostra, janelas de teste agregadas
+  G1_min_operacoes: 100
+  G2_expectativa_liquida_R_min: 0.10
+  G3_ic90_bootstrap_inferior_R_min: 0.0
+  G4_fator_de_lucro_min: 1.3
+  G5_max_drawdown_max: 0.20
+  G6_janelas_positivas_min: 0.60
+  G7_expectativa_com_slippage_estresse_R_min: 0.0
+  G8_vs_benchmark: {benchmark: SPY, metrica: sharpe, exige_superar: true}
+
+gates_config_B:   # A + Kronos, avaliado nas MESMAS janelas
+  B1_ganho_expectativa_R_min: 0.05
+  B2_ic90_pareado_inferior_min: 0.0
+  B3_drawdown_nao_pior_que_A: true
+  B4_min_operacoes: 100
+  B5_amostras_individuais_por_previsao: 20   # incerteza exige amostras separadas
+
+gates_config_C:   # B + filtro LLM, só em paper prospectivo (backtest com LLM vaza conhecimento)
+  C1_meses_paper_min: 6
+  C2_min_operacoes_por_config: 100
+  C3_media_R_vetadas_menor_que_mantidas: true
+  C4_drawdown_nao_pior_que_B: true
+  C5_slippage_observado_max_vs_assumido: 2.0
+
+regras:
+  teste_final_uma_unica_vez: true
+  resultado_do_teste_final_nao_altera_gates: true
+  mudancas_depois_de_ver_resultados: proibidas

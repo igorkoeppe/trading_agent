@@ -1,0 +1,9 @@
+# Núcleo do projeto (Fases 1 a 3). Python 3.10 ou mais novo.
+alpaca-py>=0.40
+pandas>=2.2
+numpy>=1.26
+pyyaml>=6.0
+python-dotenv>=1.0
+tzdata>=2024.1        # base de fusos horários; o Windows não traz uma
+
+pytest>=8.0

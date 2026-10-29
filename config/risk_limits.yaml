@@ -1,0 +1,10 @@
+# Limites iniciais do motor de risco (documento v2.0, seção "Dados, risco e segurança").
+# Recalibrar só ANTES de um experimento pré-registrado, nunca depois de ver o resultado.
+max_daily_loss_pct: 0.03        # perda máxima diária, fração do patrimônio
+risk_per_trade_pct: 0.01        # perda máxima até o stop, fração do patrimônio
+max_exposure_per_asset_pct: 0.30
+max_open_positions: 3
+max_orders_per_day: 6
+min_order_notional_usd: 1.0     # mínimo da Alpaca para ordens fracionadas
+require_stop_on_entry: true
+allow_short: false

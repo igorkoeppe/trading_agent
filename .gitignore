@@ -1,0 +1,20 @@
+# Segredos: nunca versionar
+.env
+.env.*
+!.env.example
+
+# Ambiente Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Dados e saídas geradas
+logs/*
+!logs/.gitkeep
+data_cache/
+*.parquet
+
+# Repositórios de referência clonados localmente
+_ref/

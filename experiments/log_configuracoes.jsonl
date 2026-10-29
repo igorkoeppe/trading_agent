@@ -1,0 +1,1 @@
+{"config_id": "0f00279b2c88", "nome": "A1_find_setups_breakout_reclaim", "setups": ["breakout_20d", "reclaim_ma20"], "params": {"slippage_bps": 5.0, "atr_period": 14, "atr_mult": 2.0, "max_hold_sessions": 10, "risk_per_trade": 0.01, "max_positions": 3, "max_exposure_per_asset": 0.3, "initial_equity": 10000.0}, "utc": "2026-10-28T17:53:56.295547+00:00"}
